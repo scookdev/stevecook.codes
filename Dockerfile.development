@@ -1,0 +1,61 @@
+# Base image - using the same Ruby version as your production Dockerfile
+ARG RUBY_VERSION=3.4.2
+FROM ruby:$RUBY_VERSION
+
+# Install dependencies needed for development
+RUN apt-get update -qq && \
+  apt-get install --no-install-recommends -y \
+  build-essential \
+  git \
+  libpq-dev \
+  postgresql-client \
+  nodejs \
+  npm \
+  curl \
+  libvips \
+  vim \
+  && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+
+# Install Yarn globally
+RUN npm install -g yarn
+
+# Set working directory
+ENV APP_HOME=/rails
+RUN mkdir -p $APP_HOME
+WORKDIR $APP_HOME
+
+# Set environment variables
+ENV RAILS_ENV=development \
+  BUNDLE_PATH=/usr/local/bundle \
+  BUNDLE_WITHOUT=""
+
+# Copy Gemfile and Gemfile.lock
+COPY Gemfile Gemfile.lock ./
+
+# Install gems with explicit pg_config path
+RUN bundle config build.pg --with-pg-config=/usr/bin/pg_config && bundle install --binstubs=/usr/local/bundle/bin
+
+
+
+# Copy application code
+COPY . ./
+
+# Ensure the tmp/pids folder exists
+RUN mkdir -p tmp/pids
+
+# Entrypoint script to handle database setup
+COPY .docker/dev-entrypoint.sh /usr/bin/entrypoint.sh
+
+RUN chmod +x /usr/bin/entrypoint.sh
+
+# Ensure proper permissions for bundle cache
+RUN mkdir -p $BUNDLE_PATH && chmod -R 777 $BUNDLE_PATH
+
+# Expose port for Rails server
+EXPOSE 3000
+
+# Set the entrypoint script
+ENTRYPOINT ["entrypoint.sh"]
+
+# Default command to start Rails server
+CMD ["rails", "server", "-b", "0.0.0.0"]

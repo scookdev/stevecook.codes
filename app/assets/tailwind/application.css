@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+h1 {
+  @apply text-4xl text-sky-500;
+}
+
+h2 {
+  @apply text-2xl text-sky-400;
+}
+
+p {
+  @apply text-lg text-gray-500;
+}
+
+.bg-darkCard-light {
+  background-color: rgba(40, 40, 40, 0.6);
+}
