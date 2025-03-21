@@ -61,9 +61,8 @@ group :test do
 end
 
 gem "tailwindcss-ruby", "~> 4.0"
-
 gem "tailwindcss-rails", "~> 4.2"
-
 gem "slim-rails", "~> 3.7"
-
 gem "pg", "~> 1.5", ">= 1.5.9"
+gem "dotenv-rails", groups: [ :development, :test ]
+gem "bcrypt"

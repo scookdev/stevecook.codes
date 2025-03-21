@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "posts/create"
+  get "posts/new"
+  get "posts/edit"
+  get "posts/update"
+  get "posts/destroy"
   get "home/index"
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
