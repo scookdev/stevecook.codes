@@ -4,6 +4,7 @@ h1 New Post
     = form.text_field :title, placeholder: "Title", class: "w-64 px-2 py-1 text-sm text-gray-900 rounded bg-gray-50 mb-8 block"
     = form.text_area :summary, placeholder: "Summary", class: "w-full h-32 px-2 py-2 text-sm text-gray-900 rounded bg-gray-50 mb-8 block"
     = form.rich_text_area :body, placeholder: "Body", class: "w-full h-64 px-2 py-2 text-sm text-gray-900 rounded bg-gray-50 mb-8 block"
+    br
     = form.select :status, ["ACTIVE", "INACTIVE"], class: "w-auto px-2 py-1 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded"
     br
     br
