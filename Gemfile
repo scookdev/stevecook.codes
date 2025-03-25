@@ -70,4 +70,5 @@ group :development, :test do
   gem "dotenv-rails"
   gem "pry-byebug", "~> 3.10", ">= 3.10.1"
   gem "rspec", "~> 3.13"
+  gem "bundler-audit", "~> 0.9.0"
 end
