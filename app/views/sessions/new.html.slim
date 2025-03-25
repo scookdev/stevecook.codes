@@ -1,0 +1,6 @@
+h1 Login, Yo
+
+= form_with url: login_path, method: :post, local: true do |form|
+  = form.password_field :password, placeholder: "Enter password", class: "w-100 px-2 py-1 text-sm text-gray-900 rounded bg-gray-50 mb-8"
+  br
+  = form.submit "Login", class: "bg-teal-800 text-gray-200 py-2 px-4 rounded hover:bg-teal-400 transition-colors hover:text-black"

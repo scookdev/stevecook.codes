@@ -1,0 +1,19 @@
+h1 Posts
+div.relative.overflow-x-auto.rounded-lg
+  table.w-full.text-sm.text-left.rtl:text-right.text-gray-500.dark:text-gray-400
+    thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
+      tr
+        th scope="col" class="px-6 py-3" Title
+        th scope="col" class="px-6 py-3" Summary
+        th scope="col" class="px-6 py-3" Tags
+        th scope="col" class="px-6 py-3" Status
+        th
+    tbody
+      - @posts.each do |post|
+        tr.bg-white.border-b.dark:bg-gray-800.dark:border-gray-700.border-gray-200
+          th scope="row" class="px-6 py-4 font-medium text-gray-800 whitespace-nowrap dark:text-white" = link_to post.title, edit_admin_post_path(post), class: "text-gray-400 hover:underline"
+          td.px-6.py-4 = post.summary
+          td.px-6.py-4 = post.tags
+          td.px-6.py-4 = post.status
+- if flash[:notice]
+  div.bg-teal-800.text-white.p-4.rounded.mb-4 = flash[:notice]

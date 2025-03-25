@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+h1 {
+  @apply text-4xl text-sky-500;
+}
+
+h2 {
+  @apply text-2xl text-sky-400;
+}
+
+p {
+  @apply text-lg text-gray-500;
+}
+
+/* Change the color of the icons in the Action Text toolbar */
+.trix-button {
+  color: #e2e8f0; /* Light gray color */
+}
+
+/* Optionally, change icon color on hover or active states */
+.trix-button:hover,
+.trix-button:focus {
+  color: #cbd5e0; /* Slightly lighter on hover/focus */
+}
+
+.bg-darkCard-light {
+  background-color: rgba(40, 40, 40, 0.6);
+}

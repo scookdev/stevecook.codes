@@ -1,0 +1,17 @@
+div
+  h1.text-4xl.font-semibold.text-center.text-darkAccent Steve Cook
+  p.text-base.text-center.pb-8 &nbsp;
+  
+  - @posts.each_slice(3) do |row|
+    div.space-y-8
+      div.grid.grid-cols-1.sm:grid-cols-2.md:grid-cols-3.gap-4.mt-4
+        - row.each do |post|
+          div.bg-darkCard-light.p-8.rounded-lg.shadow-lg.space-y-4
+            - if post.featured_image.attached?
+              div
+                = image_tag post.featured_image.variant(resize_to_limit: [500, 500]), alt: post.title, class: "w-full h-48 object-cover rounded-lg"
+            h2.text-2xl.font-medium.text-darkAccent = post.title 
+            p.text-base.text-darkText = post.summary
+            br
+            = link_to "Read More >>", post_slug_path(post.slug), class: "bg-teal-800 text-gray-200 py-2 px-4 rounded hover:bg-teal-400 transition-colors hover:text-black inline-block"
+    br

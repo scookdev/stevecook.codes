@@ -1,0 +1,11 @@
+div
+  h1.text-4xl.font-semibold.text-center.text-darkAccent Steve Cook
+  p.text-base.text-center.pb-8 &nbsp;
+  
+  div.space-y-8
+    div.gap-4.mt-4
+      div.bg-darkCard-light.p-8.rounded-lg.shadow-lg.space-y-4
+        h2.text-2xl.font-medium.text-darkAccent = @post.title 
+        p.text-base.text-darkText = @post.body
+        br
+        = link_to "<< Back to Blog", posts_url(@post), class: "bg-teal-800 text-gray-200 py-2 px-4 rounded hover:bg-teal-400 transition-colors hover:text-black inline-block"
