@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
@@ -19,7 +21,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.new(post_params.merge(slug: slug))
 
     if @post.save
-      redirect_to admin_posts_path, notice: "Post successfully created!"
+      redirect_to admin_posts_path, notice: 'Post successfully created!'
     else
       render :new
     end
@@ -30,7 +32,7 @@ class Admin::PostsController < ApplicationController
     slug = generate_slug(post_params[:title])
 
     if @post.update(post_params.merge(slug: slug))
-      redirect_to admin_posts_path, notice: "Post updated successfully!"
+      redirect_to admin_posts_path, notice: 'Post updated successfully!'
     else
       render :edit
     end
@@ -43,14 +45,12 @@ class Admin::PostsController < ApplicationController
   end
 
   def authenticate_admin!
-    raise ActionController::RoutingError.new("Not Found") unless session[:admin]
+    raise ActionController::RoutingError, 'Not Found' unless session[:admin]
   end
 
   def generate_slug(title)
     slug = title.parameterize
-    while Post.exists?(slug: slug)
-      slug = "#{slug}-#{SecureRandom.hex(4)}"
-    end
+    slug = "#{slug}-#{SecureRandom.hex(4)}" while Post.exists?(slug: slug)
     slug
   end
 end
